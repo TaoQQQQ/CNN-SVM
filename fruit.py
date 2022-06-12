@@ -12,8 +12,6 @@ from tensorflow.keras.optimizers import Adadelta
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import ReduceLROnPlateau, ModelCheckpoint
 
-#tf.test.is_gpu_available()
-##############################################
 learning_rate = 0.1  # initial learning rate
 min_learning_rate = 0.00001  # once the learning rate reaches this value, do not decrease it further
 learning_rate_reduction_factor = 0.5  # the factor used when reducing the learning rate -> learning_rate *= learning_rate_reduction_factor
@@ -28,7 +26,7 @@ base_dir = '/root/autodl-tmp/Data'  # relative path to the Fruit-Images-Dataset 
 test_dir = os.path.join(base_dir, 'Test')
 train_dir = os.path.join(base_dir, 'Training')
 output_dir = '/root/autodl-tmp/output_files'  # root folder in which to save the the output files; the files will be under output_files/model_name
-##############################################
+
 #默认在当前目录下寻找，没有就创造一个
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)#创造目录名
