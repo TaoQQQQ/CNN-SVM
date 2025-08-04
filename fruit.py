@@ -48,9 +48,7 @@ def plot_model_history(model_history, out_path=""):
     axs[0].set_title('Model Accuracy')
     axs[0].set_ylabel('Accuracy')
     axs[0].set_xlabel('Epoch')
-    #设置刻度
     axs[0].set_xticks(np.arange(1, len(model_history.history['acc']) + 1), len(model_history.history['acc']))
-    #名字
     axs[0].legend(['train'], loc='best')
     # summarize history for loss
     axs[1].plot(range(1, len(model_history.history['loss']) + 1), model_history.history['loss'])
@@ -84,15 +82,6 @@ def augment_image(x):
     x = tf.image.random_hue(x, 0.02)
     return x
 
-
-# given the train and test folder paths and a validation to test ratio, this method creates three generators
-#  - the training generator uses (100 - validation_percent) of images from the train set
-#    it applies random horizontal and vertical flips for data augmentation and generates batches randomly
-#  - the validation generator uses the remaining validation_percent of images from the train set
-#    does not generate random batches, as the model is not trained on this data
-#    the accuracy and loss are monitored using the validation data so that the learning rate can be updated if the model hits a local optimum
-#  - the test generator uses the test set without any form of augmentation
-#    once the training process is done, the final values of accuracy and loss are calculated on this set
 
 # 给定train和test文件夹路径以及验证与测试比率，该方法将创建三个生成器
 # 训练生成器使用来自训练集的（100-100%）图像
@@ -138,7 +127,6 @@ def convert_to_hsv_and_grayscale(x):
     gray = tf.image.rgb_to_grayscale(x) #将rgb格式的图像转换成grayscale的灰度图像
     rez = tf.concat([hsv, gray], axis=-1)#连接第一个维度
     return rez
-
 
 # 对于axis等于负数的情况
 # 负数在数组索引里面表示倒数(countdown)。比如，
@@ -216,4 +204,5 @@ print(labels)
 print(num_classes)
 model = network(input_shape=input_shape, num_classes=num_classes)
 train_and_evaluate_model(model, name="fruit-360 model")
+
 
