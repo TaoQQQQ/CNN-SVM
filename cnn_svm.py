@@ -22,11 +22,12 @@ def convert_to_hsv_and_grayscale(x):
     rez = tf.concat([hsv, gray], axis=-1)#连接第一个维度
     return rez
 
-model=load_model('D:\\PycharmProjects\\pythonProject\\output_files\\fruit-360 model\\model.h5')
-fcl2_layer_model = Model(inputs=model.input,outputs=model.get_layer('fcl2').output)
-f=open('D:\PycharmProjects\pythonProject\svm_data.txt','a')
-file_root = 'D:\\deep learing\\Fruit-Images-Dataset-master\\Fruit-Images-Dataset-master\\Test'  # 当前文件夹下的所有图片
+model = load_model('D:\\..model.h5')
+fcl2_layer_model = Model(inputs=model.input, outputs=model.get_layer('fcl2').output)
+f = open('D:\\..svm_data.txt','a')
+file_root = 'D:..'  # 当前文件夹下的所有图片
 type_list = os.listdir(file_root)
+
 for type_name in type_list:
     type_path= file_root+'\\'+type_name
     img_list = os.listdir(type_path)
@@ -37,9 +38,10 @@ for type_name in type_list:
       img = tf.expand_dims(img,0)
       output = fcl2_layer_model.predict(img)
       output = tf.squeeze(output,[0])
-      output =numpy.array(output)
+      output = numpy.array(output)
       tem_str = ','.join(str(i) for i in output)
       tem_str = tem_str + ',' + type_name + '\n'
       f.write(tem_str)
 print('完成')
 f.close()
+
