@@ -1,4 +1,3 @@
-#D:\PycharmProjects\pythonProject\output_files\fruit-360 model
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -44,4 +43,5 @@ for type_name in type_list:
       f.write(tem_str)
 print('完成')
 f.close()
+
 
